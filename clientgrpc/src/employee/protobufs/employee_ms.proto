@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package employee_ms;
+
+service EmployeesService {
+    rpc GetAllEmployee(GetAllEmployeeRequest) returns (StringEmployeeGetDataResponse){}
+    rpc GetOneEmployee(GetOneEmployeeRequest) returns (StringGetOneEmployeeGetDataResponse){}
+    rpc CreateNewEmployee(CreateNewEmployeeRequest) returns (StringEmployeeDataResponse) {}
+    rpc UpdateEmployee(UpdateEmployeeRequest) returns (StringEmployeeDataResponse) {}
+    rpc DeleteEmployee(DeleteEmployeeRequest) returns (StringEmployeeDataResponse) {}
+    // rpc GetAllUser(GetAllUserRequest) returns (StringUserDataResponse){}
+    // rpc GetOneUser(GetOneUserRequest) returns (StringUserDataResponse){}
+    rpc CreateNewUser(CreateNewUserRequest) returns (StringUserDataResponse) {}
+    rpc UpdateUser(UpdateUserRequest) returns (StringUserDataResponse){}
+    rpc DeleteUser(DeleteUserRequest) returns (StringUserDataResponse){}
+}
+
+
+
+message Employee {
+    string name = 1;
+    int32 age = 2;
+    string identityNumber = 3;
+    string phoneNumber = 4;
+    string managerId = 5;
+}
+
+message GetAllEmployeeRequest{
+
+}
+
+message StringEmployeeGetDataResponse{
+    repeated Employee listEmployee = 1;
+}
+
+message StringGetOneEmployeeGetDataResponse{
+    Employee employee = 1;
+}
+
+// message GetAllUserRequest{
+
+// }
+
+
+
+message StringEmployeeDataResponse {
+    int32 code = 1;
+    string message = 2;
+    Employee result = 3;
+}
+
+message User{
+    string name = 1;
+    int32 age = 2;
+    string identityNumber = 3;
+    string phoneNumber = 4;
+    string employeeId = 5;
+}
+
+message StringUserDataResponse {
+    int32 code = 1;
+    string message = 2;
+    User result = 3;
+}
+
+message CreateNewEmployeeInput {
+    string name = 1;
+    int32 age = 2;
+    string identityNumber = 3;
+    string phoneNumber = 4;
+    string managerId = 5;
+}
+message CreateNewEmployeeRequest {
+    CreateNewEmployeeInput createNewEmployeeInput = 1; // Loi la do cach format file proto nho lay..............
+}
+
+message UpdateEmployeeInput {
+    string id = 1;
+    string name = 2;
+    int32 age = 3;
+    string identityNumber = 4;
+    string phoneNumber = 5;
+    string managerId = 6;
+}
+
+message UpdateEmployeeRequest {
+    UpdateEmployeeInput updateEmployeeInput = 1;
+}
+
+message DeleteEmployeeRequest {
+    DeleteEmployeeInput deleteEmployeeInput = 1;
+    message DeleteEmployeeInput {
+        string id = 1;
+    }
+}
+
+message GetOneEmployeeRequest {
+    GetOneEmployeeInput getOneEmployeeInput = 1;
+    message GetOneEmployeeInput {
+        string id = 1;
+    }
+}
+
+message CreateNewUserRequest{
+    CreateNewUserInput createNewUserInput = 1;
+    message CreateNewUserInput{
+    string name = 1;
+    int32 age = 2;
+    string identityNumber = 3;
+    string phoneNumber = 4;
+    string employeeId = 5;
+    }
+}
+
+// message GetOneUserRequest{
+//     string id = 1;
+// }
+
+message UpdateUserRequest{
+    UpdateUserInput updateUserInput = 1;
+    message UpdateUserInput{
+    string name = 1;
+    int32 age = 2;
+    string identityNumber = 3;
+    string phoneNumber = 4;
+    string employeeId = 5;
+    }
+}
+
+message DeleteUserRequest{
+    DeleteUserInput deleteUserInput = 1;
+    message DeleteUserInput{
+        string id = 1;
+    }
+}
